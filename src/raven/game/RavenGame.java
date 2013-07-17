@@ -114,6 +114,7 @@ public class RavenGame {
 	// Public methods
 
 	public RavenGame() {
+		System.out.println("Raven game instantiated.");
 		EntityManager.reset();
 		
 		try {
