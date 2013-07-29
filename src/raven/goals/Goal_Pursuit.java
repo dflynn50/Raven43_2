@@ -15,12 +15,13 @@ public class Goal_Pursuit extends GoalComposite<RavenBot> {
 	public void activate() {
 		m_iStatus = Goal.CurrentStatus.active;
 		m_pOwner.getSteering().pursuitOn();
-	/*	m_pOwner.getSteering().seekOff();
+		m_pOwner.getSteering().seekOff();
 		m_pOwner.getSteering().arriveOff();
 		m_pOwner.getSteering().separationOff();
 		m_pOwner.getSteering().wallAvoidanceOff();
-		m_pOwner.getSteering().wanderOff();*/
+		m_pOwner.getSteering().wanderOff();
 		m_pOwner.getSteering().setTargetAgent1(target);
+		m_pOwner.getSteering().setTargetAgent1(m_pOwner.getTeam().getCaptain());
 	}
 
 	@Override

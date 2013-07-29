@@ -21,18 +21,25 @@ public class GoalThink extends GoalComposite<RavenBot> {
 		Log.debug("GoalThink", "created new brain attached to bot " + ravenBot.ID());
 
 		// random values are between 0.5 and 1.5
-		HealthBias = Math.random() + 0.5;
+		/*HealthBias = 0.0;
+		ShotgunBias = 0.0;
+		RocketLauncherBias = 0.0;
+		RailgunBias = 0.0;
+		ExploreBias = 0.0;
+		AttackBias  = 0.0;*/
+		
+		/*HealthBias = Math.random() + 0.5;
 		ShotgunBias = Math.random() + 0.5;
 		RocketLauncherBias = Math.random() + 0.5;
 		RailgunBias = Math.random() + 0.5;
 		ExploreBias = Math.random() + 0.5;
-		AttackBias  = Math.random() + 0.5;
+		AttackBias  = Math.random() + 0.5;*/
 
-		m_Evaluators.add(new GetHealthGoal_Evaluator(HealthBias));
-		m_Evaluators.add(new ExploreGoal_Evaluator(ExploreBias));
-		m_Evaluators.add(new AttackTargetGoal_Evaluator(AttackBias));
+		//m_Evaluators.add(new GetHealthGoal_Evaluator(HealthBias));
+		//m_Evaluators.add(new ExploreGoal_Evaluator(ExploreBias));
+		//m_Evaluators.add(new AttackTargetGoal_Evaluator(AttackBias));
 
-		try {
+		/*try {
 			m_Evaluators.add(new GetWeaponGoal_Evaluator(ShotgunBias,
 					RavenObject.SHOTGUN));
 			m_Evaluators.add(new GetWeaponGoal_Evaluator(RailgunBias,
@@ -41,7 +48,7 @@ public class GoalThink extends GoalComposite<RavenBot> {
 					RavenObject.ROCKET_LAUNCHER));
 		} catch(Exception ex) {
 			System.out.println(ex.getMessage());
-		}
+		}*/
 	}
 
 	public void Terminate(){
@@ -51,7 +58,11 @@ public class GoalThink extends GoalComposite<RavenBot> {
 	@Override
 	public void activate(){
 		if (!m_pOwner.isPossessed()) {
+			if(m_pOwner.isCaptain() == true)
 			Arbitrate();
+			else {
+				m_pOwner.getBrain().addGoal_pursuit(m_pOwner.getTeam().getCaptain());
+			}
 		}
 		m_iStatus = Goal.CurrentStatus.active;
 	}

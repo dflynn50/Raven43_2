@@ -12,6 +12,7 @@ public abstract class Goal_Evaluator {
 	public Goal_Evaluator(Double bias, GoalType type) {
 		this.bias = bias;
 		goalTypeToAdd = type;
+		//goalTypeToAdd = Goal.GoalType.goal_pursuit;
 	}
 
 

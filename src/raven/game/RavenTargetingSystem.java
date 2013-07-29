@@ -23,6 +23,7 @@ public class RavenTargetingSystem implements IRavenTargetingSystem{
 		
 		// grab a list of all the opponents the owner can sense
 		List<IRavenBot> sensedBots = owner.getSensoryMem().getListOfRecentlySensedOpponents();
+		//List<IRavenBot> validTargets = sensedBots;
 		List<IRavenBot> validTargets = removeTeammatesFromSensed(sensedBots, owner.getTeam().ID());
 		
 		for (IRavenBot opponent : validTargets) {

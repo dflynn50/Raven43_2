@@ -30,8 +30,8 @@ var Weapon_RespawnDelay         = 15;
 
 //the number of bots the game instantiates
 
-var NumBots = 2;
-var NumTeams = 2;
+var NumBots = 3;
+var NumTeams = 1;
 
 //this is the maximum number of search cycles allocated to *all* current path
 // planning searches per update
@@ -62,10 +62,10 @@ var Bot_MaxSwimmingSpeed = Bot_MaxSpeed * 0.2;
 var Bot_MaxCrawlingSpeed = Bot_MaxSpeed * 0.6;
 // 
 //the number of times a second a bot 'thinks' about weapon selection
-var Bot_WeaponSelectionFrequency = 2;
+var Bot_WeaponSelectionFrequency = -1;
 
 //the number of times a second a bot 'thinks' about changing strategy
-var Bot_GoalAppraisalUpdateFreq = 4;
+var Bot_GoalAppraisalUpdateFreq = -1;
 
 //the number of times a second a bot updates its target info
 var Bot_TargetingUpdateFreq = 2;
@@ -80,7 +80,7 @@ var Bot_VisionUpdateFreq = 4;
 // will ensure the feature is updated every bot update
 
 //the bot's field of view (in degrees)
-var Bot_FOV = 180;
+var Bot_FOV = 360;
 
 //the bot's reaction time (in seconds)
 var Bot_ReactionTime = 0.2;
@@ -116,11 +116,11 @@ var WallAvoidanceWeight         = 25.0;
 var WanderWeight                = 1.0;
 var SeekWeight                  = 0.5;
 var ArriveWeight                = 1.0;
-var PursuitWeight				= 5.0;
+var PursuitWeight				= 30.0;
 
 //how close a neighbour must be before an agent considers it
 //to be within its neighborhood (for separation)
-var ViewDistance                =  15.0;
+var ViewDistance                =  50.0;
 
 //max feeler length
 var WallDetectionFeelerLength   = 3.0 * Bot_Scale;

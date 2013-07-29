@@ -45,6 +45,7 @@ public class Team extends BaseGameEntity implements ITeam
 	private static int currValidTeamID = 0;
 	private static int teamID;
 	private Color teamColor;
+	private RavenBot teamCaptain;
 	 
 	
 	////A list of bots on the team, should be references, I'll ask
@@ -138,4 +139,8 @@ public class Team extends BaseGameEntity implements ITeam
 		//}
 		return teamColor;
 	}
+	
+	public void setCaptain(RavenBot bot) {teamCaptain = bot;}
+	
+	public RavenBot getCaptain() { return teamCaptain;}
 }

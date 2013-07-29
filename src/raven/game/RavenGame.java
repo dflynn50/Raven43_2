@@ -32,6 +32,8 @@ import raven.utils.MapSerializer;
 import raven.utils.MapLoadedException;
 
 public class RavenGame {
+	
+	public static boolean captainExist = false;
 	/** the current game map */
 	private RavenMap map;
 
@@ -365,9 +367,6 @@ public class RavenGame {
 			// it will not be rendered until it is spawned)
 			IRavenBot bot = new RavenBot(this, new Vector2D());
 			
-			IRavenBot bot2 = new RavenBot(this, new Vector2D());
-			IRavenBot bot3 = new RavenBot(this, new Vector2D());
-			
 			// switch the default steering behaviors on
 			bot.getSteering().wallAvoidanceOn();
 			bot.getSteering().separationOn();
@@ -377,33 +376,25 @@ public class RavenGame {
 			// register the bot with the entity manager
 			EntityManager.registerEntity(bot);
 			
+			bot.setTeam(EntityManager.getAvailableTeam());
 			// Give this bot a default goal
-			bot.getBrain().addGoal_explore();
+			 if(captainExist == false) {
+				bot.getBrain().addGoal_explore();
+				bot.getTeam().setCaptain((RavenBot)bot);
+				System.out.println("Bot " + bot.ID() + " set as captain for Team " +
+				bot.getTeam().ID());
+				captainExist = true;
+			}
+			else {
+				bot.getBrain().addGoal_pursuit(bot.getTeam().getCaptain());
+				bot.getBrain().removeAllSubgoals();
+				System.out.println("Bot " + bot.ID() + " set as wingman for captain " 
+				+ bot.getTeam().getCaptain().ID() + " of Team " + bot.getTeam().ID());
+			}
+			
 //			bot.getBrain().activate();                       
 //***************************************************************			
-			bot2.getSteering().wallAvoidanceOn();
-			bot2.getSteering().separationOn();
-			bots.add(bot2);
-			Log.info("game", "Bot " + bot2.ID() + " added");
-			
-			// register the bot with the entity manager
-			EntityManager.registerEntity(bot2);
-			
-			// Give this bot a default goal
-			bot2.getBrain().addGoal_explore();
-//			bot.getBrain().activate();
-//*******************************************************************
-			bot3.getSteering().wallAvoidanceOn();
-			bot3.getSteering().separationOn();
-			bots.add(bot3);
-			Log.info("game", "Bot " + bot3.ID() + " added");
-			
-			// register the bot with the entity manager
-			EntityManager.registerEntity(bot3);
-			
-			// Give this bot a default goal
-			bot3.getBrain().addGoal_explore();
-//			bot.getBrain().activate();                
+   
 		}
 	}
 	
@@ -630,12 +621,13 @@ public class RavenGame {
 	   if(spaceK)
 	   {   
 		   
-		selectedBot.fireWeapon(mouseP);
+		//selectedBot.fireWeapon(mouseP);
 	    System.out.println("SHOOT!!!!!!");
 		Log.debug("game", "Fired possessed bot weapon");
         spaceK=false;
         //selectedBot.update(delta);
 	   }
+	   
 	}
 	public void clickRightMouseButton(Vector2D p, boolean shiftKeyPressed) {
 		IRavenBot bot = getBotAtPosition(p);
@@ -685,11 +677,11 @@ public class RavenGame {
 	 */
 	public void clickLeftMouseButton(Vector2D p) {
 		if (selectedBot != null && selectedBot.isPossessed()) {
-			selectedBot.fireWeapon(p);
+			//selectedBot.fireWeapon(p);
 			Log.debug("game", "Fired possessed bot weapon");
-		}
+		}		
 	}
-
+	
 	/** when called will release any possessed bot from user control */
 	public void exorciseAnyPossessedBot() {
 		if (selectedBot != null) {
@@ -714,7 +706,7 @@ public class RavenGame {
 	}
 
 	/** Change to a new weapon for a possessed bot. */
-	public void changeWeaponOfPossessedBot(RavenObject weapon) {
+	/*public void changeWeaponOfPossessedBot(RavenObject weapon) {
 		if (selectedBot != null) {
 			switch (weapon) {
 			case BLASTER:
@@ -735,7 +727,7 @@ public class RavenGame {
 				break;
 			}
 		}
-	}
+	}*/
 
 	//////////////
 	// Accessors

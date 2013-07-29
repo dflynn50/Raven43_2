@@ -57,7 +57,7 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 	 * this handles all the weapons. and has methods for aiming, selecting and
 	 * shooting them
 	 */
-	private RavenWeaponSystem weaponSys;
+	//private RavenWeaponSystem weaponSys;
 
 	/**
 	 * A regulator object limits the update frequency of a specific AI component
@@ -239,11 +239,11 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 		// create the targeting system
 		targSys = new RavenTargetingSystem(this);
 
-		weaponSys = new RavenWeaponSystem(this,
+		/*weaponSys = new RavenWeaponSystem(this,
 				RavenScript.getDouble("Bot_ReactionTime"),
 				RavenScript.getDouble("Bot_AimAccuracy"),
 				RavenScript.getDouble("Bot_AimPersistance"));
-
+*/
 		sensoryMem = new RavenSensoryMemory(this,
 				RavenScript.getDouble("Bot_MemorySpan"));
 		
@@ -334,7 +334,7 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 		GameCanvas.circle(pos(), getBRadius() * 0.5);
 
 		// render the bot's weapon
-		weaponSys.renderCurrentWeapon();
+		//weaponSys.renderCurrentWeapon();
 		
 		// render a thick red circle if the bot gets hit by a weapon
 		if (hit) {
@@ -411,20 +411,20 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 
 			// select the appropriate weapon to use from the weapons currently
 			// in the inventory
-			if (weaponSelectionRegulator.isReady()) {
+			/*if (weaponSelectionRegulator.isReady()) {
 				weaponSys.selectWeapon();
 			}
 
 			// this method aims the bot's current weapon at the current target
 			// and takes a shot if a shot is possible
-			weaponSys.takeAimAndShoot(delta);
+			weaponSys.takeAimAndShoot(delta);*/
 		}
 		//selected bot crap
-		if(isPossessed())
+		/*if(isPossessed())
 		{
 			weaponSys.angryFire(delta);
 		}
-
+*/
 		
 	}
 
@@ -645,14 +645,14 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 
 	// Interface for human player
 
-	public void fireWeapon(Vector2D pos) {
+	/*public void fireWeapon(Vector2D pos) {
 		weaponSys.shootAt(pos);
 	}
 
 	public void changeWeapon(RavenObject type) {
 		weaponSys.changeWeapon(type);
 	}
-
+*/
 	public void takePossession() {
 		if (!(isSpawning() || isDead())) {
 			Log.info("bot", "Possesed bot " + ID());
@@ -673,7 +673,7 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 		brain.removeAllSubgoals();
 		targSys.clearTarget();
 		setPos(pos);
-		weaponSys.initialize();
+		//weaponSys.initialize();
 		restoreHealthToMaximum();
 	}
 
@@ -764,10 +764,10 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 		return targSys.getTarget();
 	}
 
-	public RavenWeaponSystem getWeaponSys() {
+	/*public RavenWeaponSystem getWeaponSys() {
 		return weaponSys;
 	}
-
+*/
 	public RavenSensoryMemory getSensoryMem() {
 		return sensoryMem;
 	}
@@ -775,4 +775,8 @@ public class RavenBot extends MovingEntity implements IRavenBot {
 	public void setSteering(RavenSteering steering){
 		this.steering = steering; 
 	}
+	
+	public void setTeam(Team team) { this.team = team;}
+	
+	public boolean isCaptain() { return isCaptain;}
 }

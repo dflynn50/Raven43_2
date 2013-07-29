@@ -63,7 +63,7 @@ public class RavenFeature {
 	 * @return
 	 * @throws Exception
 	 */
-	public static double IndividualWeaponStrength(RavenBot pBot, RavenObject WeaponType) {
+	/*public static double IndividualWeaponStrength(RavenBot pBot, RavenObject WeaponType) {
 		//grab a pointer to the gun (if the bot owns an instance)
 		RavenWeapon wp = pBot.getWeaponSys().getWeaponFromInventory(WeaponType);
 
@@ -73,14 +73,14 @@ public class RavenFeature {
 		} else {
 			return 0.0;
 		}
-	}
+	}*/
 
 	//returns a value between 0 and 1 based on the total amount of ammo the
 	//bot is carrying each of the weapons. Each of the three weapons a bot can
 	//pick up can contribute a third to the score. In other words, if a bot
 	//is carrying a RL and a RG and has max ammo for the RG but only half max
 	//for the RL the rating will be 1/3 + 1/6 + 0 = 0.5
-	public static double TotalWeaponStrength(RavenBot pBot) {
+	/*public static double TotalWeaponStrength(RavenBot pBot) {
 		double MaxRoundsForShotgun = getMaxRoundsBotCanCarryForWeapon(RavenObject.SHOTGUN);
 		double MaxRoundsForRailgun = getMaxRoundsBotCanCarryForWeapon(RavenObject.RAIL_GUN);
 		double MaxRoundsForRocketLauncher = getMaxRoundsBotCanCarryForWeapon(RavenObject.ROCKET_LAUNCHER);
@@ -95,7 +95,7 @@ public class RavenFeature {
 		double Tweaker = 0.1;
 
 		return Tweaker + .5*(NumSlugs + NumCartridges + NumRockets)/(MaxRoundsForShotgun + MaxRoundsForRailgun + MaxRoundsForRocketLauncher);
-	}
+	}*/
 
 	private static double getMaxRoundsBotCanCarryForWeapon(RavenObject weapon) {
 		switch (weapon) {

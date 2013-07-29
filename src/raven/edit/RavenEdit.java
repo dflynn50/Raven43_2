@@ -10,6 +10,7 @@ public class RavenEdit {
             public void run() {
                 new EditorViewController();
             }
-        }
+        });
 	}
 }
+
