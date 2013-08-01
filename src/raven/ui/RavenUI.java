@@ -326,16 +326,16 @@ public class RavenUI extends JFrame implements KeyListener, MouseListener, Compo
 			System.exit(0);
 			break;
 		case KeyEvent.VK_1:
-			//game.changeWeaponOfPossessedBot(RavenObject.BLASTER);
+			game.changeWeaponOfPossessedBot(RavenObject.BLASTER);
 			break;
 		case KeyEvent.VK_2:
-			//game.changeWeaponOfPossessedBot(RavenObject.SHOTGUN);
+			game.changeWeaponOfPossessedBot(RavenObject.SHOTGUN);
 			break;
 		case KeyEvent.VK_3:
-			//game.changeWeaponOfPossessedBot(RavenObject.ROCKET_LAUNCHER);
+			game.changeWeaponOfPossessedBot(RavenObject.ROCKET_LAUNCHER);
 			break;
 		case KeyEvent.VK_4:
-			//game.changeWeaponOfPossessedBot(RavenObject.RAIL_GUN);
+			game.changeWeaponOfPossessedBot(RavenObject.RAIL_GUN);
 			break;
 		case KeyEvent.VK_X:
 			game.exorciseAnyPossessedBot();

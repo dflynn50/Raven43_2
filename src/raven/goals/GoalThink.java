@@ -15,6 +15,8 @@ public class GoalThink extends GoalComposite<RavenBot> {
 	private double RailgunBias = 0.0;
 	private double ExploreBias = 0;
 	private double AttackBias  = 0;
+	private Vector2D captainPosA = null;
+	//private Vector2D captainPosB = null;
 
 	public GoalThink(RavenBot ravenBot) {
 		super(ravenBot, Goal.GoalType.goal_think);
@@ -61,7 +63,15 @@ public class GoalThink extends GoalComposite<RavenBot> {
 			if(m_pOwner.isCaptain() == true)
 			Arbitrate();
 			else {
-				m_pOwner.getBrain().addGoal_pursuit(m_pOwner.getTeam().getCaptain());
+				if(captainPosA == null)
+					captainPosA = m_pOwner.getTeam().getCaptain().pos();
+	
+				else {
+					m_pOwner.getBrain().addGoal_moveToPosition(captainPosA, captainPosA);
+					captainPosA = m_pOwner.getTeam().getCaptain().pos();
+					//captainPosA.x = captainPosA.x + 5;
+					//captainPosA.y = captainPosA.y + 5;
+					}
 			}
 		}
 		m_iStatus = Goal.CurrentStatus.active;

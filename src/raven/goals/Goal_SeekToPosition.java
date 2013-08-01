@@ -25,7 +25,11 @@ public class Goal_SeekToPosition extends GoalComposite<RavenBot> {
 	
 	public Goal_SeekToPosition(RavenBot rbot, Vector2D target) {
 		super(rbot, Goal.GoalType.goal_seek_to_position);
-		m_vPosition = target;
+
+		if(rbot.isCaptain())
+			m_vPosition = target;
+		else
+			m_vPosition = rbot.getTeam().getCaptain().pos();
 		m_dTimeToReachPos = 0.0;
 
 	}

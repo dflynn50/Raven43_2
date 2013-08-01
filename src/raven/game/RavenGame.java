@@ -33,7 +33,7 @@ import raven.utils.MapLoadedException;
 
 public class RavenGame {
 	
-	public static boolean captainExist = false;
+	//public static boolean captainExist = false;
 	/** the current game map */
 	private RavenMap map;
 
@@ -297,6 +297,10 @@ public class RavenGame {
 			if (!bots.isEmpty()) {
 				IRavenBot bot = bots.get(bots.size() - 1);
 				if (bot.equals(selectedBot)) {
+					if(selectedBot.ID() == bot.getTeam().getCaptain().ID())
+					{
+						selectedBot.getTeam().toggleCaptainNoExist();
+					}
 					selectedBot = null;
 				}
 				notifyAllBotsOfRemoval(bot);
@@ -378,15 +382,18 @@ public class RavenGame {
 			
 			bot.setTeam(EntityManager.getAvailableTeam());
 			// Give this bot a default goal
-			 if(captainExist == false) {
+			 if(bot.getTeam().captainExist() == false) {
+				bot.setAsCaptain();
 				bot.getBrain().addGoal_explore();
 				bot.getTeam().setCaptain((RavenBot)bot);
 				System.out.println("Bot " + bot.ID() + " set as captain for Team " +
 				bot.getTeam().ID());
-				captainExist = true;
+				bot.getTeam().toggleCaptainExist();
 			}
 			else {
-				bot.getBrain().addGoal_pursuit(bot.getTeam().getCaptain());
+				//bot.getBrain().addGoal_pursuit(bot.getTeam().getCaptain());
+				bot.getBrain().addGoal_moveToPosition(bot.getTeam().getCaptain().pos(), 
+													bot.getTeam().getCaptain().pos());
 				bot.getBrain().removeAllSubgoals();
 				System.out.println("Bot " + bot.ID() + " set as wingman for captain " 
 				+ bot.getTeam().getCaptain().ID() + " of Team " + bot.getTeam().ID());
@@ -621,7 +628,7 @@ public class RavenGame {
 	   if(spaceK)
 	   {   
 		   
-		//selectedBot.fireWeapon(mouseP);
+		selectedBot.fireWeapon(mouseP);
 	    System.out.println("SHOOT!!!!!!");
 		Log.debug("game", "Fired possessed bot weapon");
         spaceK=false;
@@ -706,7 +713,7 @@ public class RavenGame {
 	}
 
 	/** Change to a new weapon for a possessed bot. */
-	/*public void changeWeaponOfPossessedBot(RavenObject weapon) {
+	public void changeWeaponOfPossessedBot(RavenObject weapon) {
 		if (selectedBot != null) {
 			switch (weapon) {
 			case BLASTER:
@@ -727,7 +734,7 @@ public class RavenGame {
 				break;
 			}
 		}
-	}*/
+	}
 
 	//////////////
 	// Accessors

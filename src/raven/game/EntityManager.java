@@ -37,8 +37,15 @@ public class EntityManager {
 	public static Team getAvailableTeam() {
 		
 		//everyone joins the same team now.
+		/*int teamToAssign;
+		if (lastTeamAssigned == 101){
+			teamToAssign = 100;
+		}
+		else
+			teamToAssign = 101;
+		lastTeamAssigned = teamToAssign;*/
+		
 		int teamToAssign = 100;
-	
 		
 		return teamList.get(teamToAssign);	
 	}

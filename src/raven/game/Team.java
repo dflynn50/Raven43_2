@@ -46,6 +46,7 @@ public class Team extends BaseGameEntity implements ITeam
 	private static int teamID;
 	private Color teamColor;
 	private RavenBot teamCaptain;
+	private boolean captainExist = false;
 	 
 	
 	////A list of bots on the team, should be references, I'll ask
@@ -94,6 +95,7 @@ public class Team extends BaseGameEntity implements ITeam
 	//Ask if this works as a reference
 		if (teamBots.size()==0){
 			draftee.setAsCaptain();
+			//draftee.getTeam().toggleCaptainExist();
 			Log.info("TEAM", "Registered Captain of team " + draftee.getTeam().ID());
 		}
 		teamBots.add(draftee);
@@ -103,6 +105,9 @@ public class Team extends BaseGameEntity implements ITeam
 	///We may want to add a clear/remove team association. 
 	public void dropBot(IRavenBot draftee){
 		teamBots.remove(draftee);
+		/*if(teamBots.size() == 0) {
+			draftee.getTeam().toggleCaptainNoExist();
+		}*/
 	}
 
 	
@@ -143,4 +148,11 @@ public class Team extends BaseGameEntity implements ITeam
 	public void setCaptain(RavenBot bot) {teamCaptain = bot;}
 	
 	public RavenBot getCaptain() { return teamCaptain;}
+	
+	public  boolean captainExist() {return captainExist;}
+	public void toggleCaptainExist() { captainExist = true; }
+	public void toggleCaptainNoExist() {captainExist = false;}
+	
 }
+
+

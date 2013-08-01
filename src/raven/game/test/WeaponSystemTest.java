@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import raven.game.RavenObject;
-//import raven.game.RavenWeaponSystem;
+import raven.game.RavenWeaponSystem;
 import raven.game.armory.Blaster;
 import raven.game.armory.Railgun;
 import raven.game.armory.RocketLauncher;
@@ -54,13 +54,13 @@ public class WeaponSystemTest {
 			oneOf(targeting).getTarget(); will(returnValue(target));
 		}});
 		
-		/*RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
+		RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
 		weapons.addWeapon(RavenObject.SHOTGUN);
 		weapons.addWeapon(RavenObject.BLASTER);
 		weapons.addWeapon(RavenObject.ROCKET_LAUNCHER);
 		weapons.addWeapon(RavenObject.RAIL_GUN);
-		weapons.selectWeapon();*/
-		//Assert.assertTrue(weapons.getCurrentWeapon().getClass() == Shotgun.class);
+		weapons.selectWeapon();
+		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == Shotgun.class);
 	}
 	
 	@Test
@@ -76,13 +76,13 @@ public class WeaponSystemTest {
 			oneOf(targeting).getTarget(); will(returnValue(target));
 		}});
 		
-		/*RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
+		RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
 		weapons.addWeapon(RavenObject.SHOTGUN);
 		weapons.addWeapon(RavenObject.BLASTER);
 		weapons.addWeapon(RavenObject.ROCKET_LAUNCHER);
 		weapons.addWeapon(RavenObject.RAIL_GUN);
 		weapons.selectWeapon();
-		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == Railgun.class);*/
+		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == Railgun.class);
 	}
 	
 	@Test
@@ -97,13 +97,13 @@ public class WeaponSystemTest {
 			oneOf(targeting).getTarget(); will(returnValue(target));
 		}});
 		
-		/*RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
+		RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
 		weapons.addWeapon(RavenObject.SHOTGUN);
 		weapons.addWeapon(RavenObject.BLASTER);
 		weapons.addWeapon(RavenObject.ROCKET_LAUNCHER);
 		weapons.addWeapon(RavenObject.RAIL_GUN);
 		weapons.selectWeapon();
-		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == RocketLauncher.class);*/
+		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == RocketLauncher.class);
 	}
 	
 	@Test
@@ -119,11 +119,11 @@ public class WeaponSystemTest {
 			oneOf(targeting).getTarget(); will(returnValue(target));
 		}});
 		
-		/*RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
+		RavenWeaponSystem weapons = new RavenWeaponSystem(bot, 0.0, 1.0, 0.0);
 		weapons.addWeapon(RavenObject.BLASTER);
 		weapons.addWeapon(RavenObject.RAIL_GUN);
 		weapons.getWeaponFromInventory(RavenObject.RAIL_GUN).setCurrentRounds(0);
 		weapons.selectWeapon();
-		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == Blaster.class);*/
+		Assert.assertTrue(weapons.getCurrentWeapon().getClass() == Blaster.class);
 	}
 }
