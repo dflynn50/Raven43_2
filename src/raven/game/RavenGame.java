@@ -380,7 +380,7 @@ public class RavenGame {
 			// register the bot with the entity manager
 			EntityManager.registerEntity(bot);
 			
-			bot.setTeam(EntityManager.getAvailableTeam());
+			
 			// Give this bot a default goal
 			 if(bot.getTeam().captainExist() == false) {
 				bot.setAsCaptain();

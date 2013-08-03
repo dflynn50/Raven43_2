@@ -31,7 +31,7 @@ var Weapon_RespawnDelay         = 15;
 //the number of bots the game instantiates
 
 var NumBots = 3;
-var NumTeams = 1;
+var NumTeams = 2;
 
 //this is the maximum number of search cycles allocated to *all* current path
 // planning searches per update
