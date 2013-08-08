@@ -33,6 +33,8 @@ public class Main {
     	
     	while (true) {
     		// TODO Resize UI if the map changes!
+    		
+    	    
     		boolean loadedMap = false;
 
     		long currentTime = System.nanoTime();

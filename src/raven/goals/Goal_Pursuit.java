@@ -21,7 +21,6 @@ public class Goal_Pursuit extends GoalComposite<RavenBot> {
 		//m_pOwner.getSteering().wallAvoidanceOff();
 		m_pOwner.getSteering().wanderOff();
 		m_pOwner.getSteering().setTargetAgent1(target);
-		m_pOwner.getSteering().setTargetAgent1(m_pOwner.getTeam().getCaptain());
 	}
 
 	@Override

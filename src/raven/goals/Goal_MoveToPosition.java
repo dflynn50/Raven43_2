@@ -17,26 +17,33 @@ public class Goal_MoveToPosition extends GoalComposite<RavenBot>{
 	@Override
 	public void activate() {
 		m_iStatus = Goal.CurrentStatus.active;
-
+		m_pOwner.getSteering().wallAvoidanceOn();
 		//make sure the subgoal list is clear.
+		
 		removeAllSubgoals();
-
+		m_pOwner.getPathPlanner().RequestPathToPosition(m_vDestination);
+	    
 		//requests a path to the target position from the path planner. Because, for
 		//demonstration purposes, the Raven path planner uses time-slicing when 
 		//processing the path requests the bot may have to wait a few update cycles
 		//before a path is calculated. Consequently, for appearances sake, it just
 		//seeks directly to the target position whilst it's awaiting notification
 		//that the path planning request has succeeded/failed
-		if (m_pOwner.getPathPlanner().RequestPathToPosition(m_vDestination)) {
-			AddSubgoal(new Goal_SeekToPosition(m_pOwner, m_vDestination));
-		}
+		
+		AddSubgoal(new Goal_SeekToPosition(m_pOwner, m_vDestination));
+	
 	}
 
 	@Override
 	public raven.goals.Goal.CurrentStatus  process(double delta) {
 		//if status is inactive, call Activate()
 		activateIfInactive();
-
+        if(m_pOwner.pos().distance(m_vDestination) < 40.0)
+        {
+        	terminate();
+        	return m_iStatus;
+        }
+        
 		//process the subgoals
 		m_iStatus = ProcessSubgoals(delta);
 

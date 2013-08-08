@@ -391,15 +391,16 @@ public class RavenGame {
 				bot.getTeam().toggleCaptainExist();
 			}
 			else {
-				//bot.getBrain().addGoal_pursuit(bot.getTeam().getCaptain());
-				bot.getBrain().addGoal_moveToPosition(bot.getTeam().getCaptain().pos(), 
-													bot.getTeam().getCaptain().pos());
+				bot.getBrain().addGoal_pursuit(bot.getTeam().getCaptain());
+				//bot.getBrain().addGoal_moveToPosition(bot.getTeam().getCaptain().pos(), 
+				//									bot.getTeam().getCaptain().pos());
+				
 				bot.getBrain().removeAllSubgoals();
 				System.out.println("Bot " + bot.ID() + " set as wingman for captain " 
 				+ bot.getTeam().getCaptain().ID() + " of Team " + bot.getTeam().ID());
 			}
 			
-//			bot.getBrain().activate();                       
+			bot.getBrain().activate();                       
 //***************************************************************			
    
 		}

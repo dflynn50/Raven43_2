@@ -67,10 +67,10 @@ public class GoalThink extends GoalComposite<RavenBot> {
 					captainPosA = m_pOwner.getTeam().getCaptain().pos();
 	
 				else {
-					m_pOwner.getBrain().addGoal_moveToPosition(captainPosA, captainPosA);
+					Vector2D v = new Vector2D();
 					captainPosA = m_pOwner.getTeam().getCaptain().pos();
-					//captainPosA.x = captainPosA.x + 5;
-					//captainPosA.y = captainPosA.y + 5;
+					
+					m_pOwner.getBrain().addGoal_moveToPosition(captainPosA,captainPosA);
 					}
 			}
 		}
